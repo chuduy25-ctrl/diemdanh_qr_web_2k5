@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>Web điểm danh</title>
+
+	<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+	<h2>Web điểm danh</h2>
+
+	<label>Nhập mã sinh viên</label>
+	<br>
+	<input type="text" id="mssv" required>
+
+	<h3>Chọn vị trí chỗ ngồi</h3>
+
+	<div class="seats">
+
+		<button class="seat" onclick="chonGhe(1)">1</button>
+		<button class="seat" onclick="chonGhe(2)">2</button>
+		<button class="seat" onclick="chonGhe(3)">3</button>
+		<button class="seat" onclick="chonGhe(4)">4</button>
+
+		<br>
+
+		<button class="seat" onclick="chonGhe(5)">5</button>
+		<button class="seat" onclick="chonGhe(6)">6</button>
+		<button class="seat" onclick="chonGhe(7)">7</button>
+		<button class="seat" onclick="chonGhe(8)">8</button>
+
+	</div>
+
+	<br>
+
+	<button onclick="submitForm()">Submit</button>
+
+	<script src="script.js"></script>
+
+</body>
+
+</html>
