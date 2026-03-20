@@ -57,3 +57,20 @@ function submitForm() {
         "\nGhế: " + gheDaChon
     );
 }
+function diemDanh() {
+    const data = {
+        maSinhVien: document.getElementById("masv").value,
+        viTriNgoi: document.getElementById("seat").value
+    };
+
+    fetch("https://YOUR_API_URL/api/diemdanh", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(data => alert(data.message))
+    .catch(err => console.error(err));
+}
