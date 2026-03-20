@@ -13,6 +13,9 @@ function chonGhe(num) {
     });
 
     seats[num - 1].classList.add("selected");
+
+    // 🔥 Lưu vào input hidden để gửi API
+    document.getElementById("seat").value = num;
 }
 
 // =======================
@@ -38,29 +41,19 @@ function capNhatThoiGian() {
 setInterval(capNhatThoiGian, 1000);
 
 // =======================
-// SUBMIT
+// GỌI API ĐIỂM DANH
 // =======================
-function submitForm() {
-    let mssv = document.getElementById("mssv").value;
-    let monhoc = document.getElementById("monhoc").value;
-    let thoigian = document.getElementById("thoigian").value;
+function diemDanh() {
+    let mssv = document.getElementById("masv").value;
 
     if (mssv == "" || gheDaChon == null) {
         alert("Vui lòng nhập MSSV và chọn ghế");
         return;
     }
 
-    alert(
-        "MSSV: " + mssv +
-        "\nMôn học: " + monhoc +
-        "\nThời gian: " + thoigian +
-        "\nGhế: " + gheDaChon
-    );
-}
-function diemDanh() {
     const data = {
-        maSinhVien: document.getElementById("masv").value,
-        viTriNgoi: document.getElementById("seat").value
+        maSinhVien: mssv,
+        viTriNgoi: gheDaChon
     };
 
     fetch("https://YOUR_API_URL/api/diemdanh", {
@@ -71,6 +64,11 @@ function diemDanh() {
         body: JSON.stringify(data)
     })
     .then(res => res.json())
-    .then(data => alert(data.message))
-    .catch(err => console.error(err));
+    .then(data => {
+        alert(data.message);
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Lỗi kết nối API");
+    });
 }
