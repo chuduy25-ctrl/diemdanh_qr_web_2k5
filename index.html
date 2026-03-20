@@ -10,28 +10,23 @@
 
     <h2>Web điểm danh</h2>
 
-
-
-    <!-- Môn học (cố định) -->
-    <label>Môn học</label>
-    <br>
+    <!-- Môn học -->
+    <label>Môn học</label><br>
     <input type="text" id="monhoc" value="Cơ sở dữ liệu" readonly>
-    <br>
-    <br>
+    <br><br>
 
-    <!-- Thời gian thực -->
-    <label>Thời gian điểm danh</label>
-    <br>
+    <!-- Thời gian -->
+    <label>Thời gian điểm danh</label><br>
     <input type="text" id="thoigian" readonly>
-    <br>
-    <br>
+    <br><br>
 
     <!-- MSSV -->
-    <label>Nhập mã sinh viên</label>
-    <br>
-    <input type="text" id="mssv" required>
-    <br>
-    <br>
+    <label>Nhập mã sinh viên</label><br>
+    <input type="text" id="masv" required>
+    <br><br>
+
+    <!-- ẨN: lưu vị trí ghế -->
+    <input type="hidden" id="seat">
 
     <!-- Ghế -->
     <h3>Chọn vị trí chỗ ngồi</h3>
@@ -52,7 +47,8 @@
 
     <br>
 
-    <button onclick="submitForm()">Submit</button>
+    <!-- Nút điểm danh -->
+    <button onclick="diemDanh()">Điểm danh</button>
 
     <script src="script.js"></script>
 
