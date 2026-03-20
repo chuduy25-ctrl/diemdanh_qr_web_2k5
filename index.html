@@ -1,45 +1,60 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
-
-	<title>Web điểm danh</title>
-
-	<link rel="stylesheet" href="style.css">
-
+    <title>Web điểm danh</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-	<h2>Web điểm danh</h2>
+    <h2>Web điểm danh</h2>
 
-	<label>Nhập mã sinh viên</label>
-	<br>
-	<input type="text" id="mssv" required>
 
-	<h3>Chọn vị trí chỗ ngồi</h3>
 
-	<div class="seats">
+    <!-- Môn học (cố định) -->
+    <label>Môn học</label>
+    <br>
+    <input type="text" id="monhoc" value="Cơ sở dữ liệu" readonly>
+    <br>
+    <br>
 
-		<button class="seat" onclick="chonGhe(1)">1</button>
-		<button class="seat" onclick="chonGhe(2)">2</button>
-		<button class="seat" onclick="chonGhe(3)">3</button>
-		<button class="seat" onclick="chonGhe(4)">4</button>
+    <!-- Thời gian thực -->
+    <label>Thời gian điểm danh</label>
+    <br>
+    <input type="text" id="thoigian" readonly>
+    <br>
+    <br>
 
-		<br>
+    <!-- MSSV -->
+    <label>Nhập mã sinh viên</label>
+    <br>
+    <input type="text" id="mssv" required>
+    <br>
+    <br>
 
-		<button class="seat" onclick="chonGhe(5)">5</button>
-		<button class="seat" onclick="chonGhe(6)">6</button>
-		<button class="seat" onclick="chonGhe(7)">7</button>
-		<button class="seat" onclick="chonGhe(8)">8</button>
+    <!-- Ghế -->
+    <h3>Chọn vị trí chỗ ngồi</h3>
 
-	</div>
+    <div class="seats">
+        <button class="seat" onclick="chonGhe(1)">1</button>
+        <button class="seat" onclick="chonGhe(2)">2</button>
+        <button class="seat" onclick="chonGhe(3)">3</button>
+        <button class="seat" onclick="chonGhe(4)">4</button>
 
-	<br>
+        <br><br>
 
-	<button onclick="submitForm()">Submit</button>
+        <button class="seat" onclick="chonGhe(5)">5</button>
+        <button class="seat" onclick="chonGhe(6)">6</button>
+        <button class="seat" onclick="chonGhe(7)">7</button>
+        <button class="seat" onclick="chonGhe(8)">8</button>
+    </div>
 
-	<script src="script.js"></script>
+    <br>
+
+    <button onclick="submitForm()">Submit</button>
+
+    <script src="script.js"></script>
 
 </body>
 
