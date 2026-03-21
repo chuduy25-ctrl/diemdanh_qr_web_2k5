@@ -56,7 +56,7 @@ function diemDanh() {
         viTriNgoi: gheDaChon
     };
 
-    fetch("https://localhost:7063/api/diemdanh", {
+    fetch("http://localhost:7063/api/diemdanh", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
