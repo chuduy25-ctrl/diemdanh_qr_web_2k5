@@ -8,14 +8,19 @@ function chonGhe(num) {
 
     let seats = document.querySelectorAll(".seat");
 
+    // Xóa class selected cũ
     seats.forEach(function (seat) {
         seat.classList.remove("selected");
     });
 
-    seats[num - 1].classList.add("selected");
+    // Thêm class selected cho ghế vừa chọn (num - 1 vì mảng bắt đầu từ 0)
+    if (seats[num - 1]) {
+        seats[num - 1].classList.add("selected");
+    }
 
-    // 🔥 Lưu vào input hidden để gửi API
-    document.getElementById("seat").value = num;
+    // Cập nhật giá trị vào input ẩn nếu có
+    const seatInput = document.getElementById("seat");
+    if (seatInput) seatInput.value = num;
 }
 
 // =======================
@@ -34,10 +39,11 @@ function capNhatThoiGian() {
 
     let thoiGian = `${ngay}/${thang}/${nam} ${gio}:${phut}:${giay}`;
 
-    document.getElementById("thoigian").value = thoiGian;
+    const thoiGianInput = document.getElementById("thoigian");
+    if (thoiGianInput) thoiGianInput.value = thoiGian;
 }
 
-// chạy mỗi giây
+// Chạy mỗi giây
 setInterval(capNhatThoiGian, 1000);
 
 // =======================
@@ -46,29 +52,40 @@ setInterval(capNhatThoiGian, 1000);
 function diemDanh() {
     let mssv = document.getElementById("masv").value;
 
-    if (mssv == "" || gheDaChon == null) {
+    if (mssv === "" || gheDaChon === null) {
         alert("Vui lòng nhập MSSV và chọn ghế");
         return;
     }
 
+    // 🔥 QUAN TRỌNG: Tên thuộc tính phải viết HOA chữ cái đầu để khớp với Class DiemDanh trong C#
     const data = {
-        maSinhVien: mssv,
-        viTriNgoi: gheDaChon
+        MaSinhVien: mssv.trim(),
+        ViTriNgoi: gheDaChon.toString(), // Chuyển số thành chuỗi "1", "2"...
+        ThoiGian: new Date().toISOString() // Định dạng chuẩn ISO cho SQL
     };
 
-    fetch("http://localhost:7063/api/diemdanh", {
+    // 🔥 Đổi sang cổng HTTP:5154
+    fetch("http://localhost:5154/api/diemdanh", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(data)
     })
-    .then(res => res.json())
+    .then(async res => {
+        const result = await res.json();
+        if (!res.ok) {
+            // Nếu server trả về BadRequest (400) kèm message lỗi
+            throw new Error(result.message || "Lỗi không xác định");
+        }
+        return result;
+    })
     .then(data => {
-        alert(data.message);
+        alert("Thành công: " + data.message);
+        // Có thể reset form hoặc chuyển trang tại đây
     })
     .catch(err => {
-        console.error(err);
-        alert("Lỗi kết nối API");
+        console.error("Chi tiết lỗi:", err);
+        alert("Thất bại: " + err.message);
     });
 }
