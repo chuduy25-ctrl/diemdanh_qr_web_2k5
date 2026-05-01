@@ -65,7 +65,7 @@ function diemDanh() {
     };
 
     // 🔥 Đổi sang cổng HTTP:5154
-    fetch("http://172.27.59.76:5154/api/diemdanh", {
+    fetch("http://192.168.1.214:5154/api/diemdanh", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
