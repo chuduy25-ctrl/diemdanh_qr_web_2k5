@@ -57,7 +57,7 @@ function diemDanh() {
 
     // 🔥 CHUYỂN SANG DẠNG GET: Đưa dữ liệu lên URL Query String
     // Các tên tham số maSinhVien và viTriNgoi phải khớp 100% với Controller C#
-    const url = `http://192.168.1.214:5154/api/diemdanh?maSinhVien=${mssv}&viTriNgoi=${vitri}`;
+    const url = `http://172.27.59.76:5154/api/diemdanh?maSinhVien=${mssv}&viTriNgoi=${vitri}`;
 
     console.log("Đang gọi API:", url);
 
