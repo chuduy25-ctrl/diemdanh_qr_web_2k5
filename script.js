@@ -55,7 +55,7 @@ async function diemDanh() {
     const vitri = gheDaChon.toString();
 
     // ⚠️ Thay YOUR_HTTPS_URL bằng URL HTTPS thực tế bạn có (ví dụ ngrok)
-    const apiUrl = "https://YOUR_HTTPS_URL/api/diemdanh";
+   const apiUrl = window.location.origin + "/api/diemdanh";
 
     try {
         const response = await fetch(apiUrl, {
