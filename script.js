@@ -44,40 +44,36 @@ setInterval(capNhatThoiGian, 1000);
 // =======================
 // GỌI API ĐIỂM DANH (BẢN GET)
 // =======================
-function diemDanh() {
-    let mssvRaw = document.getElementById("masv").value;
-
+async function diemDanh() {
+    let mssvRaw = document.getElementById("masv").value.trim();
     if (mssvRaw === "" || gheDaChon === null) {
         alert("Vui lòng nhập MSSV và chọn ghế");
         return;
     }
 
-    const mssv = mssvRaw.trim();
+    const mssv = mssvRaw;
     const vitri = gheDaChon.toString();
 
-    // 🔥 CHUYỂN SANG DẠNG GET: Đưa dữ liệu lên URL Query String
-    // Các tên tham số maSinhVien và viTriNgoi phải khớp 100% với Controller C#
-    const url = `http://192.168.1.31:5154/api/diemdanh?maSinhVien=${mssv}&viTriNgoi=${vitri}`;
+    // ⚠️ Thay YOUR_HTTPS_URL bằng URL HTTPS thực tế bạn có (ví dụ ngrok)
+    const apiUrl = "https://YOUR_HTTPS_URL/api/diemdanh";
 
-    console.log("Đang gọi API:", url);
+    try {
+        const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Api-Key": "my-secret-key-2024"   // phải khớp với API Key ở server
+            },
+            body: JSON.stringify({ maSinhVien: mssv, viTriNgoi: vitri })
+        });
 
-    // Fetch mặc định không có method sẽ là GET
-    fetch(url)
-    .then(async res => {
-        const result = await res.json();
-        if (!res.ok) {
-            // Hiển thị lỗi từ server (ví dụ: MSSV không tồn tại)
-            throw new Error(result.message || "Lỗi không xác định");
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.message || "Lỗi không xác định");
         }
-        return result;
-    })
-    .then(data => {
         alert("Thành công: " + data.message);
-    })
-    .catch(err => {
-        console.error("Chi tiết lỗi:", err);
-        // Nếu vẫn lỗi "Failed to fetch", trình duyệt vẫn đang chặn Mixed Content.
-        // Bạn hãy thực hiện bước "Mồi IP" như đã thảo luận.
+    } catch (err) {
+        console.error(err);
         alert("Lỗi kết nối: " + err.message);
-    });
+    }
 }
