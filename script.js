@@ -62,7 +62,7 @@ async function diemDanh() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-Api-Key": "my-secret-key-2024"   // phải khớp với API Key ở server
+                "X-Api-Key": "23.03.2005"   // phải khớp với API Key ở server
             },
             body: JSON.stringify({ maSinhVien: mssv, viTriNgoi: vitri })
         });
